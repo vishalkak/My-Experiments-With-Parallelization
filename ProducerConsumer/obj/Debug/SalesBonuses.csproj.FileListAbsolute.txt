@@ -1,0 +1,42 @@
+G:\Projects\ConcurrentImmutable\SalesBonuses\SalesBonuses\bin\Debug\SalesBonuses.exe.config
+G:\Projects\ConcurrentImmutable\SalesBonuses\SalesBonuses\bin\Debug\SalesBonuses.exe
+G:\Projects\ConcurrentImmutable\SalesBonuses\SalesBonuses\bin\Debug\SalesBonuses.pdb
+G:\Projects\ConcurrentImmutable\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.csprojResolveAssemblyReference.cache
+G:\Projects\ConcurrentImmutable\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.exe
+G:\Projects\ConcurrentImmutable\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.pdb
+G:\Projects\ConcurrentImmutable\Concurrent\SalesBonuses\SalesBonuses\bin\Debug\SalesBonuses.exe.config
+G:\Projects\ConcurrentImmutable\Concurrent\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.exe
+G:\Projects\ConcurrentImmutable\Concurrent\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.pdb
+G:\Projects\ConcurrentImmutable\Concurrent\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.csprojResolveAssemblyReference.cache
+G:\Projects\ConcurrentImmutable\Concurrent\SalesBonuses\SalesBonuses\bin\Debug\SalesBonuses.exe
+G:\Projects\ConcurrentImmutable\Concurrent\SalesBonuses\SalesBonuses\bin\Debug\SalesBonuses.pdb
+G:\Projects\ConcurrentImmutable\Concurrent\4-ProducerConsumer\SalesBonuses\SalesBonuses\bin\Debug\SalesBonuses.exe.config
+G:\Projects\ConcurrentImmutable\Concurrent\4-ProducerConsumer\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.exe
+G:\Projects\ConcurrentImmutable\Concurrent\4-ProducerConsumer\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.pdb
+G:\Projects\ConcurrentImmutable\Concurrent\4-ProducerConsumer\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.csprojResolveAssemblyReference.cache
+G:\Projects\ConcurrentImmutable\Concurrent\4-ProducerConsumer\SalesBonuses\SalesBonuses\bin\Debug\SalesBonuses.exe
+G:\Projects\ConcurrentImmutable\Concurrent\4-ProducerConsumer\SalesBonuses\SalesBonuses\bin\Debug\SalesBonuses.pdb
+G:\Pluralsight\Courses\Concurrent\Code\5-ProducerConsumer-demo\SalesBonuses\SalesBonuses\bin\Debug\SalesBonuses.exe.config
+G:\Pluralsight\Courses\Concurrent\Code\5-ProducerConsumer-demo\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.exe
+G:\Pluralsight\Courses\Concurrent\Code\5-ProducerConsumer-demo\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.pdb
+G:\Pluralsight\Courses\Concurrent\Code\5-ProducerConsumer-demo\SalesBonuses\SalesBonuses\bin\Debug\SalesBonuses.exe
+G:\Pluralsight\Courses\Concurrent\Code\5-ProducerConsumer-demo\SalesBonuses\SalesBonuses\bin\Debug\SalesBonuses.pdb
+G:\Pluralsight\Courses\Concurrent\Code\5-ProducerConsumer-demo\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.csprojResolveAssemblyReference.cache
+G:\Pluralsight\Courses\Concurrent Collections\Code\5-ProducerConsumer-demo\SalesBonuses\SalesBonuses\bin\Debug\SalesBonuses.exe.config
+G:\Pluralsight\Courses\Concurrent Collections\Code\5-ProducerConsumer-demo\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.exe
+G:\Pluralsight\Courses\Concurrent Collections\Code\5-ProducerConsumer-demo\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.pdb
+G:\Pluralsight\Courses\Concurrent Collections\Code\5-ProducerConsumer-demo\SalesBonuses\SalesBonuses\bin\Debug\SalesBonuses.exe
+G:\Pluralsight\Courses\Concurrent Collections\Code\5-ProducerConsumer-demo\SalesBonuses\SalesBonuses\bin\Debug\SalesBonuses.pdb
+G:\Pluralsight\Courses\Concurrent Collections\Code\5-ProducerConsumer-demo\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.csprojResolveAssemblyReference.cache
+G:\Pluralsight\Courses\Concurrent Collections\Code\For Upload\5-ProducerConsumer-demo\SalesBonuses\SalesBonuses\bin\Debug\SalesBonuses.exe.config
+G:\Pluralsight\Courses\Concurrent Collections\Code\For Upload\5-ProducerConsumer-demo\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.exe
+G:\Pluralsight\Courses\Concurrent Collections\Code\For Upload\5-ProducerConsumer-demo\SalesBonuses\SalesBonuses\obj\Debug\SalesBonuses.pdb
+G:\Pluralsight\Courses\Concurrent Collections\Code\For Upload\5-ProducerConsumer-demo\After\SalesBonuses\bin\Debug\SalesBonuses.exe.config
+G:\Pluralsight\Courses\Concurrent Collections\Code\For Upload\5-ProducerConsumer-demo\After\SalesBonuses\obj\Debug\SalesBonuses.exe
+G:\Pluralsight\Courses\Concurrent Collections\Code\For Upload\5-ProducerConsumer-demo\After\SalesBonuses\obj\Debug\SalesBonuses.pdb
+G:\Pluralsight\Courses\Concurrent Collections\Code\For Upload\5-ProducerConsumer-demo\After\SalesBonuses\bin\Debug\SalesBonuses.exe
+G:\Pluralsight\Courses\Concurrent Collections\Code\For Upload\5-ProducerConsumer-demo\After\SalesBonuses\bin\Debug\SalesBonuses.pdb
+G:\Pluralsight\Courses\Concurrent Collections\Code\For Upload\5-ProducerConsumer-demo\After\SalesBonuses\obj\Debug\SalesBonuses.csprojResolveAssemblyReference.cache
+C:\Users\VishalKak\Documents\GitHub\MultiThreading\ProducerConsumer\bin\Debug\SalesBonuses.exe.config
+C:\Users\VishalKak\Documents\GitHub\MultiThreading\ProducerConsumer\obj\Debug\SalesBonuses.exe
+C:\Users\VishalKak\Documents\GitHub\MultiThreading\ProducerConsumer\obj\Debug\SalesBonuses.pdb
