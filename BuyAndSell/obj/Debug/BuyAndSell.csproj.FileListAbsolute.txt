@@ -1,0 +1,1 @@
+C:\Mission\Training\Pluralsight\Multithreading\csharp-concurrent-collections\3-csharp-concurrent-collections-m3-exercise-files\BuyAndSell\bin\Debug\SellAndBuy.exe.config
