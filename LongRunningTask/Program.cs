@@ -11,10 +11,6 @@ using System.Collections.Generic;
 // so .NET does not create additional worker threads to compensate for these
 // long-running tasks.
 //
-// To run:  run without debugging (ctrl+F5), open task manager, view processes,
-// and add "threads" column to the view.  Watch number of threads grow, slowly
-// but surely.
-//
 namespace LongRunning
 {
   class Program
