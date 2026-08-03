@@ -1,0 +1,121 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
+
+public class StockTracker
+{
+    private readonly ReaderWriterLockSlim _rw = new ReaderWriterLockSlim(LockRecursionPolicy.NoRecursion);
+
+    private readonly Dictionary<string, int> _holdings =
+        new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
+    private readonly Dictionary<string, decimal> _prices =
+        new Dictionary<string, decimal>(StringComparer.OrdinalIgnoreCase);
+
+    private static readonly object _consoleLock = new object();
+
+    public void Buy(string symbol, int quantity)
+    {
+        if (string.IsNullOrWhiteSpace(symbol) || quantity == 0) return;
+
+        Snapshot snapshot;
+        _rw.EnterWriteLock();
+        try
+        {
+            _holdings.TryGetValue(symbol, out var current);
+            _holdings[symbol] = current + quantity;
+
+            snapshot = BuildSnapshot_NoLock($"Buy: {symbol} | {quantity}");
+        }
+        finally
+        {
+            _rw.ExitWriteLock();
+        }
+
+        PrintSnapshot(snapshot);
+    }
+
+    public void UpdatePrice(string symbol, decimal price)
+    {
+        if (string.IsNullOrWhiteSpace(symbol)) return;
+
+        Snapshot snapshot;
+        _rw.EnterWriteLock();
+        try
+        {
+            _prices[symbol] = price;
+
+            snapshot = BuildSnapshot_NoLock($"Update: {symbol} | {price.ToString("0.####", CultureInfo.InvariantCulture)}");
+        }
+        finally
+        {
+            _rw.ExitWriteLock();
+        }
+
+        PrintSnapshot(snapshot);
+    }
+
+    // If Program.cs calls Print() directly, this can be a read lock
+    public void Print()
+    {
+        Snapshot snapshot;
+        _rw.EnterReadLock();
+        try
+        {
+            snapshot = BuildSnapshot_NoLock("Print");
+        }
+        finally
+        {
+            _rw.ExitReadLock();
+        }
+
+        PrintSnapshot(snapshot);
+    }
+
+    private Snapshot BuildSnapshot_NoLock(string header)
+    {
+        // Caller holds either read lock or write lock.
+
+        var symbols = new HashSet<string>(_holdings.Keys, StringComparer.OrdinalIgnoreCase);
+        foreach (var s in _prices.Keys) symbols.Add(s);
+
+        var rows = symbols
+            .Select(sym =>
+            {
+                _holdings.TryGetValue(sym, out var qty);
+                var hasPrice = _prices.TryGetValue(sym, out var px);
+                return new Row(
+                    sym,
+                    qty,
+                    hasPrice ? (decimal?)px : null,
+                    hasPrice ? (decimal?)(qty * px) : null
+                );
+            })
+            .OrderBy(r => r.Symbol, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        return new Snapshot(header, rows);
+    }
+
+    private static void PrintSnapshot(Snapshot snapshot)
+    {
+        // Keep multi-line output together
+        lock (_consoleLock)
+        {
+            Console.WriteLine(snapshot.Header);
+            foreach (var r in snapshot.Rows)
+            {
+                if (r.Price.HasValue)
+                    Console.WriteLine($"{r.Symbol} | {r.Quantity} | {r.Price.Value} | {r.Value!.Value}");
+                else
+                    Console.WriteLine($"{r.Symbol} | {r.Quantity} | N/A | N/A");
+            }
+            Console.WriteLine("-------------------------------------------------");
+        }
+    }
+
+    private sealed record Snapshot(string Header, List<Row> Rows);
+    private sealed record Row(string Symbol, int Quantity, decimal? Price, decimal? Value);
+}
