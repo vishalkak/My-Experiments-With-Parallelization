@@ -1,0 +1,302 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+/// ================ TEST 1 ==================
+/// <summary>
+/// Reverse all words in the sentence eg.. I am a developer => developer a am I
+/// </summary>
+public class ReverseSentenceTest
+{
+    public string ReverseSentence(string sentence)
+    {
+        var splitSentence = sentence.Split(' ');
+        var reverseSentenseArray = splitSentence.Reverse();
+        var reverse = string.Join(' ', reverseSentenseArray);
+        return reverse;
+        // foreach(var word in reverseSentense)
+        // {
+        //   Console.WriteLine(word);
+        // }
+    }
+
+    public void ShouldReverseSentence()
+    {
+        Assert.Equal("developer a am I", this.ReverseSentence("I am a developer"));
+    }
+}
+
+/// ================ TEST 2 ==================
+
+public class TradeDataAnalysisTest
+{
+    public class TradeData
+    {
+        public int TraderId { get; set; }
+        public int Value { get; set; }
+        public DateTime Date { get; set; }
+    }
+
+    public class TraderData
+    {
+        public int TraderId { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class TraderTotal
+    {
+        public string Name { get; set; }
+        public int Total { get; set; }
+    }
+
+
+    private IList<TradeData> tradesData;
+
+    private IList<TraderData> tradersData;
+
+    public TradeDataAnalysisTest()
+    {
+        this.tradesData = new List<TradeData>()
+        {
+            new TradeData { TraderId = 1, Value = -100, Date = DateTime.Parse("2016-06-01")},
+            new TradeData { TraderId = 1, Value = 50, Date = DateTime.Parse("2016-06-01")},
+            new TradeData { TraderId = 1, Value = 50, Date = DateTime.Parse("2016-06-02")},
+            new TradeData { TraderId = 1, Value = 50, Date = DateTime.Parse("2016-06-02")},
+            new TradeData { TraderId = 2, Value = 50, Date = DateTime.Parse("2016-06-02")}
+        };
+
+        this.tradersData = new List<TraderData>
+        {
+            new TraderData {TraderId = 1, Name = "Rob"},
+            new TraderData
+            {
+                TraderId = 2,
+                Name = "John"
+            }
+        };
+    }
+
+    public int calculateTradeTotal(IList<TradeData> tradesData)
+    {
+		    return tradesData.Sum(t => t.Value);
+    }
+
+    public IList<TraderTotal> calculateTradersTotal(IList<TradeData> tradesData, IList<TraderData> tradersData)
+    {
+		    var tradersTotal = tradersData
+          .Join(tradesData, x => x.TraderId, y=> y.TraderId, (trader, trade) => new TraderTotal
+          {
+            Name = trader.Name,
+            Total = trade.Value
+          })
+          .GroupBy(x => x.Name)
+          .Select( g => new TraderTotal
+          {
+            Name = g.Key,
+            Total = g.Sum(x => x.Total)
+          }).ToList();
+        
+        return tradersTotal;
+
+        // tradersData
+
+        // var groupedTradeData = tradesData
+        //   .GroupBy(t => t.TraderId)
+        //   .Select(g => new {Id = g.Id, Value = g.Sum(t => t.Value));
+
+        // foreach( var tradeData in groupedTradeData)
+        // {
+            
+        // }
+
+
+
+
+
+    }
+
+    public IList<TraderTotal> calculateTradersTotalByDate(IList<TradeData> tradesData, 
+      IList<TraderData> tradersData, DateTime filter)
+    {
+		    // var tradersTotal = tradesData
+        //   .Where(d => d.Equals(filter))
+        //   .Join(tradesData, x => x.TraderId, y=> y.TraderId, (trade, trader) => new TraderTotal
+        //   {
+        //     Name = trader.Name,
+        //     Total = trade.Value
+        //   })
+          
+        //   .ToList();
+        
+        // return tradersTotal;
+
+		    var tradersTotal = tradesData
+          .Where(d => d.Equals(filter))
+          .Join(tradersData, x => x.TraderId, y=> y.TraderId, (trader, trade) => new TraderTotal
+          {
+            Name = trade.Name,
+            Total = trader.Value
+          })
+          .GroupBy(x => x.Name)
+          .Select( g => new TraderTotal
+          {
+            Name = g.Key,
+            Total = g.Sum(x => x.Total)
+          }).ToList();
+        
+        return tradersTotal;
+
+    }
+
+    public void ShouldCalculateTradeTotal()
+    {
+        // Should calculate the total trades value
+        Assert.Equal(100, this.calculateTradeTotal(this.tradesData));
+    }
+
+    public void ShouldCalculateTradersTotal()
+    {
+        // Should calculate total trade value per user
+        var result = this.calculateTradersTotal(this.tradesData, this.tradersData);
+
+        Assert.Equal("Rob", result[0].Name);
+        Assert.Equal(50, result[0].Total);
+
+        Assert.Equal("John", result[1].Name);
+        Assert.Equal(50, result[1].Total);
+    }
+
+    public void ShouldCalculateTradersTotalFor01June()
+    {
+        // Should calculate total trade value per user
+        var result = this.calculateTradersTotalByDate(this.tradesData, this.tradersData, DateTime.Parse("2016-06-01"));
+
+        Assert.Equal("Rob", result[0].Name);
+        Assert.Equal(-50, result[0].Total);
+
+        Assert.Equal("John", result[1].Name);
+        Assert.Equal(0, result[1].Total);
+    }
+	
+	public void ShouldCalculateTradersTotalFor02June()
+    {
+        // Should calculate total trade value per user
+        var result = this.calculateTradersTotalByDate(this.tradesData, this.tradersData, DateTime.Parse("2016-06-02"));
+
+        Assert.Equal("Rob", result[0].Name);
+        Assert.Equal(100, result[0].Total);
+
+        Assert.Equal("John", result[1].Name);
+        Assert.Equal(50, result[1].Total);
+    }
+}
+
+/// ================ TEST 3 ==================
+
+
+/// <summary>
+/// Given an input string, implement a function that returns the rle string for the input string
+// ie.. tttakkkk => t3a1k4
+/// </summary>
+public class RunLengthEncodingTest
+{
+    public string EncodeString(string sentence)
+    {
+		    throw new NotImplementedException();
+    }
+
+    public void ShouldEncodeString()
+    {
+      Assert.Equal("b2x4y1e2b4x1o2l1", this.EncodeString("bbxxxxyeebbbbxool"));
+    }
+}
+
+
+/// ================ TEST 4 ==================
+
+
+/// <summary>
+/// Find the matching parenthesis within some text given the index of a parenthesis
+/// </summary>
+public class ParenthesisMatchingTest
+{
+    public int FindMatchingParenthesis(string text, int startIndex)
+    {
+		    throw new NotImplementedException();
+    }
+    
+    public void ShouldFindIndexOfClosing()
+    {
+        var text =
+            "Sometimes (when I nest them (my parentheticals) too much (like this (and this))) they get confusing.";
+        Assert.Equal(79, this.FindMatchingParenthesis(text, 10));
+    }
+
+    public void ShouldFindIndexOfOpening()
+    {
+        var text =
+            "Sometimes (when I nest them (my parentheticals) too much (like this (and this))) they get confusing.";
+        Assert.Equal(10, this.FindMatchingParenthesis(text, 79));
+    }
+}
+
+
+
+
+
+/// ================= BLURB ==================
+
+
+class MainClass {
+
+  static void Main() {
+    try{
+      Console.WriteLine("\n\n===================\nRunning tests...\n===================\n");
+
+      var reverseSentence = new ReverseSentenceTest();
+      reverseSentence.ShouldReverseSentence();
+      Console.WriteLine("----------- Reverse Sentence test complete!");
+
+      var tradeDataAnalysisTest = new TradeDataAnalysisTest();
+      tradeDataAnalysisTest.ShouldCalculateTradeTotal();
+      Console.WriteLine("----------- Trade total test complete!");
+      tradeDataAnalysisTest.ShouldCalculateTradersTotal();
+      Console.WriteLine("----------- Traders total test complete!");
+      tradeDataAnalysisTest.ShouldCalculateTradersTotalFor01June();
+      Console.WriteLine("----------- Traders total 01 June test complete!");
+      tradeDataAnalysisTest.ShouldCalculateTradersTotalFor02June();
+      Console.WriteLine("----------- Traders total 02 June test complete!");
+	  
+      var runLengthEncodingTest = new RunLengthEncodingTest();
+      runLengthEncodingTest.ShouldEncodeString();
+      Console.WriteLine("----------- RLE test complete!");
+
+      var parenthesisMatchingTest = new ParenthesisMatchingTest();
+      parenthesisMatchingTest.ShouldFindIndexOfClosing();
+      Console.WriteLine("----------- Matching Closing Parenthesis test complete !");
+      parenthesisMatchingTest.ShouldFindIndexOfOpening();
+      Console.WriteLine("----------- Matching Opening Parenthesis test complete !");
+
+      Console.WriteLine("All tests complete! Congratulations!");
+    }catch(Exception e) {
+      Console.WriteLine($"\n\nFailed with exception ------- {e.Message}");
+      Console.WriteLine(e.StackTrace);
+    }
+  }
+
+}
+
+class Assert
+{
+  public static void Equal(string a, string b)
+  {
+    if(!string.Equals(a, b, StringComparison.OrdinalIgnoreCase))
+      throw new Exception($"Expected: {a} || Actual: {b}");
+  }
+
+  public static void Equal(int a, int b)
+  {
+    if(a != b)
+      throw new Exception($"Expected: {a} || Actual: {b}");
+  }
