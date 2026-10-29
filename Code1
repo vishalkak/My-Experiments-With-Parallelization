@@ -98,11 +98,7 @@ public class StockTracker
 
         return new Snapshot(header, rows);
     }
-I hope this message finds you well. After careful consideration, I have decided to resign from my position and terminate my contract with Capco. Please consider this letter as my formal resignation, with 4 weeks’ notice. My last day will be 24th April. I have communicated my last day to Peter.
 
-I want to express my gratitude for the opportunities I've had while working at Jefferies. I have learned a lot and enjoyed being part of the team. I am committed to ensuring a smooth transition during my notice period and assisting in any way I can to minimize disruption. 
-
-Thank you for your understanding and support during my time at Capco.
     private static void PrintSnapshot(Snapshot snapshot)
     {
         // Keep multi-line output together
